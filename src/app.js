@@ -64,6 +64,17 @@
       html = metric("Reserva alvo estimada", fmt(target), "Para cobrir o déficit mensal durante o período informado.") +
         metric("Quanto falta separar", fmt(shortage)) +
         metric("Meta mensal de poupança", fmt(shortage / Math.max(1, val("monthsToSave"))), "Até o início da baixa temporada.");
+    } else if (k === "capacity") {
+      var days = Math.min(7, val("days"));
+      var hoursPerDay = val("hours"), blockedPerDay = Math.min(hoursPerDay, val("pause"));
+      var availableMinutes = days * Math.max(0, hoursPerDay - blockedPerDay) * 60;
+      var duration = Math.max(1, val("duration"));
+      var capacity = Math.floor(availableMinutes / duration);
+      var booked = Math.min(capacity, val("booked"));
+      var free = Math.max(0, capacity - booked);
+      html = metric("Capacidade teórica", String(capacity) + " horários", "Com os dias, horas, pausas e duração informados.") +
+        metric("Horários ainda livres", String(free), "A conta considera uma duração média por atendimento.") +
+        metric("Ocupação da capacidade", capacity ? (booked / capacity * 100).toFixed(1).replace(".", ",") + "%" : "Sem capacidade", "Compare com as reservas reais da semana.");
     }
     var out = document.getElementById("results");
     if (out) out.innerHTML = html;
