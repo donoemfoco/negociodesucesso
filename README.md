@@ -1,6 +1,6 @@
 # Dono em Foco
 
-Site estático em português com calculadoras originais para negócios locais.
+Site estático em português com nove calculadoras originais e guias de conteúdo para negócios locais.
 
 ## Desenvolvimento
 
@@ -9,14 +9,15 @@ Requer Node.js 22 ou mais recente. O projeto não usa dependências externas.
     node scripts/build.mjs
 
 O site gerado fica em `dist/`. A publicação é feita pelo GitHub Actions em cada atualização da branch `main`.
+Todas as páginas oferecem o plano grátis do AgendZap e também têm links contextuais para `agendzap.com.br`.
 
 ## Publicação
 
-O nome do repositório é `dono-em-foco`; com o perfil `tonibuch23`, o endereço do projeto é:
+O repositório público é `donoemfoco/negociodesucesso`; o endereço do projeto é:
 
-https://tonibuch23.github.io/dono-em-foco/
+https://donoemfoco.github.io/negociodesucesso/
 
-O domínio personalizado deve ser configurado somente depois de registrar e controlar o domínio. Para trocar o domínio, ajuste `src/site.mjs` e publique novamente.
+O endereço base pertence ao usuário do GitHub `donoemfoco`. Para mudar a base do projeto, ajuste `src/site.mjs` e publique novamente.
 
 ## Privacidade
 

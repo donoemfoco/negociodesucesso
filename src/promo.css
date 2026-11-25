@@ -1,4 +1,10 @@
 .promo-backdrop{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(13,31,25,.68);backdrop-filter:blur(3px)}
+.guide-lead{font-size:1.13rem!important;color:var(--ink)!important}
+.guide-content section{margin:0 0 28px}
+.guide-content ul{padding-left:22px}
+.guide-content li{margin:6px 0}
+.inline-link{color:var(--green);font-weight:750;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.related-guide{padding:17px 20px;border:1px solid var(--line);border-radius:15px;background:var(--card)}
 .navlinks{display:flex;align-items:center;gap:18px}
 .nav-cta{padding:8px 12px;border-radius:10px;background:var(--green);color:white;text-decoration:none;font-size:.88rem;font-weight:750;white-space:nowrap}
 .nav-cta:hover{filter:brightness(1.08)}
