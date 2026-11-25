@@ -74,4 +74,61 @@
     form.addEventListener("change", calc);
     calc();
   }
+
+  var promo = document.getElementById("promo-modal");
+  if (!promo) return;
+  var closeButton = promo.querySelector(".promo-close");
+  var dismissButton = promo.querySelector(".promo-dismiss");
+  var dialog = promo.querySelector(".promo-dialog");
+  var promoSeen = false;
+  try { promoSeen = sessionStorage.getItem("donoEmFocoPromoSeen") === "1"; } catch (error) {}
+  var lastFocus = null;
+
+  function closePromo() {
+    promo.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("promo-open");
+    if (lastFocus && typeof lastFocus.focus === "function") lastFocus.focus();
+  }
+  function openPromo() {
+    if (promoSeen) return;
+    promoSeen = true;
+    try { sessionStorage.setItem("donoEmFocoPromoSeen", "1"); } catch (error) {}
+    lastFocus = document.activeElement;
+    promo.setAttribute("aria-hidden", "false");
+    document.body.classList.add("promo-open");
+    closeButton.focus();
+  }
+  closeButton.addEventListener("click", closePromo);
+  dismissButton.addEventListener("click", closePromo);
+  promo.addEventListener("click", function (event) {
+    if (event.target === promo) closePromo();
+  });
+  document.addEventListener("keydown", function (event) {
+    if (promo.getAttribute("aria-hidden") === "true") return;
+    if (event.key === "Escape") {
+      closePromo();
+      return;
+    }
+    if (event.key === "Tab") {
+      var controls = dialog.querySelectorAll("a[href], button:not([disabled])");
+      var first = controls[0], last = controls[controls.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
+  });
+  if (!promoSeen) {
+    var scrollCheck = function () {
+      var maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      if (maxScroll > 160 && window.scrollY / maxScroll >= 0.48) openPromo();
+    };
+    window.addEventListener("scroll", scrollCheck, { passive: true });
+    document.addEventListener("mouseout", function (event) {
+      if (event.relatedTarget === null && event.clientY <= 0) openPromo();
+    });
+  }
 }());

@@ -1,0 +1,17 @@
+.promo-backdrop{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(13,31,25,.68);backdrop-filter:blur(3px)}
+.navlinks{display:flex;align-items:center;gap:18px}
+.nav-cta{padding:8px 12px;border-radius:10px;background:var(--green);color:white;text-decoration:none;font-size:.88rem;font-weight:750;white-space:nowrap}
+.nav-cta:hover{filter:brightness(1.08)}
+.promo-backdrop[aria-hidden="false"]{display:flex;animation:promo-fade-in .18s ease-out}
+.promo-open{overflow:hidden}
+.promo-dialog{position:relative;width:min(100%,490px);padding:34px;border:1px solid var(--line);border-radius:23px;background:var(--card);box-shadow:0 28px 90px rgba(0,0,0,.24);animation:promo-rise-in .22s ease-out}
+.promo-dialog h2{max-width:380px;margin:18px 0 9px;font-size:clamp(1.8rem,6vw,2.45rem);line-height:1.08;letter-spacing:-.05em}
+.promo-dialog p{margin:0 0 23px;color:var(--muted)}
+.promo-close{position:absolute;top:13px;right:15px;display:grid;place-items:center;width:40px;height:40px;border:0;border-radius:50%;background:var(--paper);color:var(--ink);font-size:1.8rem;line-height:1;cursor:pointer}
+.promo-action{width:100%;min-height:50px}
+.promo-dismiss{display:block;width:100%;margin-top:13px;padding:9px;border:0;background:transparent;color:var(--muted);font:inherit;font-size:.9rem;cursor:pointer}
+.promo-close:focus-visible,.promo-action:focus-visible,.promo-dismiss:focus-visible{outline:3px solid var(--green);outline-offset:3px}
+@keyframes promo-fade-in{from{opacity:0}to{opacity:1}}
+@keyframes promo-rise-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:560px){.navlinks{gap:9px}.navlinks .navlink{font-size:.8rem}.nav-cta{padding:7px 9px;font-size:.76rem}.promo-backdrop{align-items:flex-end;padding:12px}.promo-dialog{padding:28px 22px 18px;border-radius:21px 21px 16px 16px}.promo-dialog h2{font-size:1.95rem}.promo-dialog p{font-size:.96rem}}
+@media(prefers-reduced-motion:reduce){.promo-backdrop[aria-hidden="false"],.promo-dialog{animation:none}}
